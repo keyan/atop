@@ -28,6 +28,7 @@ template conf_file_location do
     logpath: node['atop']['logpath'],
     interval: node['atop']['interval']
   )
+  notifies :restart, "service[atop]", :delayed
 end
 
 service 'atop' do
@@ -36,7 +37,6 @@ service 'atop' do
            status: true,
            restart: true
   action [:enable, :start]
-  subscribes :create, "template[#{conf_file_location}]", :immediately
 end
 
 include_recipe 'logrotate'

@@ -6,7 +6,7 @@ description      'Installs/Configures atop'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 source_url       'https://github.com/keyan/atop/'
 issues_url       'https://github.com/keyan/atop/issues'
-version          '1.0.0'
+version          '1.0.2'
 
 depends 'yum-epel'
 depends 'logrotate'
