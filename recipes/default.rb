@@ -42,7 +42,7 @@ end
 include_recipe 'logrotate'
 
 logrotate_app 'atop' do
-  path node['atop']['logpath']
+  path "#{node['atop']['logpath']}/*"
   rotate 5
   frequency 'daily'
   maxsize '500M'

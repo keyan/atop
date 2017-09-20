@@ -2,6 +2,9 @@
 
 This file is used to list changes made in each version of the atop cookbook.
 
+## 1.0.3
+- [dannenberg] - point logrotate at files
+
 ## 1.0.2
 - [keyan] - Replace service `subscribes` to a `notifies` in the template resource
 
