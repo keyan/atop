@@ -5,19 +5,24 @@
 # Copyright 2017, Keyan Pishdadian
 #
 
+case node['platform_family']
+when 'rhel', 'amazon'
+  include_recipe 'yum-epel'
+
+  conf_file_location = '/etc/sysconfig/atop'
+  template_source = 'atop-rhel.erb'
+
+when 'debian'
+  conf_file_location = '/etc/default/atop'
+  template_source = 'atop-debian.erb'
+
+else
+  Chef::Application.fatal!('Unsupported operating system', 1)
+end
+
 package 'atop' do
   action node['atop']['action']
   version node['atop']['version']
-end
-
-if platform_family?('rhel')
-  conf_file_location = '/etc/sysconfig/atop'
-  template_source = 'atop-rhel.erb'
-elsif platform_family?('debian')
-  conf_file_location = '/etc/default/atop'
-  template_source = 'atop-debian.erb'
-else
-  Chef::Application.fatal!('Unsupported operating system', 1)
 end
 
 template conf_file_location do
@@ -28,7 +33,7 @@ template conf_file_location do
     logpath: node['atop']['logpath'],
     interval: node['atop']['interval']
   )
-  notifies :restart, "service[atop]", :delayed
+  notifies :restart, 'service[atop]', :delayed
 end
 
 service 'atop' do

@@ -1,23 +1,28 @@
 ---
 driver:
   name: vagrant
-  username: root
-  password: vagrant
 
 provisioner:
-  name: chef_zero
-  require_chef_omnibus: 12
+  product_name: chef
+  product_version: 13
 
 verifier:
   name: inspec
 
 platforms:
-  - name: bento/centos-7.2
+  - name: centos-6
+  - name: centos-7
+  - name: ubuntu-16.04
+  - name: amazonlinux-2
+    driver:
+      box: gbailey/amzn2
+      provision: True
+      vagrantfiles:
+        - al2_workaround.rb
 
 suites:
   - name: default
     run_list:
-      - recipe[yum-epel]
       - recipe[atop]
     attributes:
       atop:

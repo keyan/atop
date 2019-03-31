@@ -3,14 +3,14 @@
 if os[:family] == 'redhat'
   describe file('/etc/sysconfig/atop') do
     it { should be_file }
-    its('content') { should match "LOGPATH" }
-    its('content') { should match "INTERVAL" }
+    its('content') { should match 'LOGPATH' }
+    its('content') { should match 'INTERVAL' }
   end
 elsif os[:family] == 'debian'
   describe file('/etc/default/atop') do
     it { should be_file }
-    its('content') { should match "LOGPATH" }
-    its('content') { should match "INTERVAL" }
+    its('content') { should match 'LOGPATH' }
+    its('content') { should match 'INTERVAL' }
   end
 end
 
