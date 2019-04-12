@@ -1,12 +1,15 @@
 # atop Cookbook
 
+[![Cookbook](http://img.shields.io/cookbook/v/atop.svg)](https://supermarket.chef.io/cookbooks/atop)
+
 This cookbook installs `atop`, starts it as a service to log data every configured interval, and configures logrotate on its log output.
 
 ## Requirements
 
 ### Platforms
 
-- CentOS
+- Amazon Linux 1 and 2
+- CentOS 6.x and 7.x
 - Debian
 
 ### Chef
